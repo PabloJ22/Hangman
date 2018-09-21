@@ -1,7 +1,7 @@
 //arrays and variables for holding data
 const wordOptions = ["blobfish", "angler", "viperfish", "mermaid", "merman", "shark", "tiburon"]
 let chosenWord = "";
-let letterInWord = [];
+let letterInChosenWord = [];
 let numBlanks = 0;
 let blanksAndSuccesses = [];
 let wrongGuesses = [];
@@ -9,19 +9,19 @@ let wrongGuesses = [];
 //Game counters
 let winCount = 0;
 let lossCount = 0;
-let guessesLeft = 0;
+let numGuesses = 9;
 
 
 
 //Game functions 
 
 function startGame() {
-    selectedWord = wordOptions[Math.floor(Math.random() * wordOptions.length)];
-    letterInWord = selectedWord.split('');
-    numBlanks = letterInWord.length;
+    numGuesses = 9;
+    chosenWord = wordOptions[Math.floor(Math.random() * wordOptions.length)];
+    letterInChosenWord = chosenWord.split('');
+    numBlanks = letterInChosenWord.length;
 
-    //reset the board
-    guessesLeft = 9;
+
     wrongGuesses = [];
     blanksAndSuccesses = [];
 
@@ -29,19 +29,21 @@ function startGame() {
     for (let i = 0; i < numBlanks; i++) {
         blanksAndSuccesses.push("_");
 
-    };
+    }
 
     //Change HTML
-    document.getElementById("wordToGuess").innerHTML = blanksAndSuccesses.join(" ");
-    document.getElementById("guessesLeft").innerHTML = guessesLeft;
+    document.getElementById("pageWordBlanks").innerHTML = blanksAndSuccesses.join(" ");
+    document.getElementById("wrongGuesses").innerHTML = wrongGuesses.join(" ");
+    document.getElementById("guessesLeft").innerHTML = numGuesses;
     document.getElementById("winCount").innerHTML = winCount;
     document.getElementById("lossCount").innerHTML = lossCount;
 
 
-    console.log(selectedWord);
-    console.log(letterInWord);
+    console.log(chosenWord);
+    console.log(letterInChosenWord);
     console.log(numBlanks);
-    console.log(blanksAndSuccesses);
+    console.log("blancks and sucesses in startGame()" + blanksAndSuccesses);
+
 };
 
 function checkLetters(letter) {
@@ -49,40 +51,41 @@ function checkLetters(letter) {
 
     for (let i = 0; i < numBlanks; i++) {
 
-        if (selectedWord[i] == letter) {
+        if (chosenWord[i] == letter) {
             isLetterInWord = true;
-            blanksAndSuccesses[i] = letter;
         }
-    };
+    }
 
     if (isLetterInWord) {
-        for (let i = 0; i < numBlanks; i++) {
-
-            if (selectedWord[i] == letter) {
-                blanksAndSuccesses[i] == letter;
-            } else {
-                wrongGuesses.push(letter);
-                guessesLeft--;
+        for (let j = 0; j < numBlanks; j++) {
+            if (chosenWord[j] === letter) {
+                blanksAndSuccesses[j] = letter;
             }
+        }
+        console.log("this should show specific letters to be filled in the blanks:: " + blanksAndSuccesses);
+    } else {
+        wrongGuesses.push(letter);
+        numGuesses--;
 
-            console.log(blanksAndSuccesses);
-        };
-    };
+    }
 };
 
 function roundComplete() {
+    console.log("WinCount: " + winCount + " | LossCount: " + lossCount + " | NumGuesses: " + numGuesses);
 
+
+    document.getElementById("guessesLeft").innerHTML = numGuesses;
+    document.getElementById("pageWordBlanks").innerHTML = blanksAndSuccesses.join(" ");
+    console.log("this is filling in the array with a '_' " + blanksAndSuccesses);
     document.getElementById("wrongGuesses").innerHTML = wrongGuesses.join(" ");
-    // document.getElementById("wordToGuess").innerHTML =
-    //     document.getElementById("wordToGuess").innerHTML =
 
-    if (letterInWord.toString() == blanksAndSuccesses.toString()) {
+    if (letterInChosenWord.toString() == blanksAndSuccesses.toString()) {
         winCount++;
         alert("You Won");
 
         document.getElementById("winCount").innerHTML = winCount;
         startGame();
-    } else if (guessesLeft == 0) {
+    } else if (numGuesses === 0) {
         lossCount++;
         alert("you lost");
 
@@ -98,20 +101,15 @@ function roundComplete() {
 //initial start of game code
 startGame();
 
-//Register key clicks
-// document.onkeyup = function (event) {
-//     // let letterGuessed = String(event.keyCode).toLowerCase();
 
-//     console.log(letterGuessed);
-// }
-
+//recognizing what key is pressed and the functional steps to follow. 
 window.addEventListener('keydown', function (event) {
 
     letterGuessed = event.key;
     checkLetters(letterGuessed);
     roundComplete();
 
-    console.log(letterGuessed);
+    console.log("this is letter guessed: " + letterGuessed);
 
 
 });
