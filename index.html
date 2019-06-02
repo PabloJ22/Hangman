@@ -1,64 +1,65 @@
 <!DOCTYPE html>
 <html>
-
-<head>
+  <head>
     <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>Hangman</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <!-- <link rel="stylesheet" type="text/css" media="screen" href="main.css" /> -->
     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-        crossorigin="anonymous">
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+      integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="style.css" />
     <!-- <script src="main.js"></script> -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-</head>
+  </head>
 
-<body>
+  <body>
     <div class="container">
+      <div class="jumbotron">
+        <h1 class="display-4">Hangman</h1>
+        <h3 class="lead">
+          Life or Death will be decided upon your ability to provide the answer
+          to this question:
+        </h3>
+        <hr class="my-4" />
+        <h2>"What underwater creature am i thinking of?"</h2>
+        <p>(press any letter key to begin...)...</p>
+      </div>
 
-
-        <div class="jumbotron">
-            <h1 class="display-4">Hangman</h1>
-            <h3 class="lead">Life or Death will be decided upon your ability to provide the answer to this question:</h3>
-            <hr class="my-4">
-            <h2>"What underwater creature am i thinking of?"</h2>
-            <p>(press any letter key to begin...)...</p>
-
+      <div class="panel panel-default">
+        <div class="panel-heading">Creature to Guess:</div>
+        <div class="panel-body" id="wordToGuess">
+          <h3 id="pageWordBlanks">_ _ _ _ _ _ _ _</h3>
         </div>
-
-
-
-        <div class="panel panel-default">
-            <div class="panel-heading">Creature to Guess:</div>
-            <div class="panel-body" id="wordToGuess">
-                <h3 id="pageWordBlanks">_ _ _ _ _ _ _ _</h3>
-            </div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-body" id="wrongGuessesDiv">
+          Wrong Guesses: <span id="wrongGuesses"></span>
         </div>
-        <!-- <div class="panel panel-default">
-            <div class="panel-body">Letters Guessed: <span id="numbGuesses"></span></div>
-        </div> -->
-        <div class="panel panel-default">
-            <div class="panel-body" id="wrongGuessesDiv">Wrong Guesses: <span id="wrongGuesses"></span></div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-body" id="guessesLeftDiv">
+          Guesses Left: <span id="guessesLeft"></span>
         </div>
-        <div class="panel panel-default">
-            <div class="panel-body" id="guessesLeftDiv">Guesses Left: <span id="guessesLeft"></span></div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-body" id="winCountDiv">
+          Win Count: <span id="winCount"></span>
         </div>
-        <div class="panel panel-default">
-            <div class="panel-body" id="winCountDiv">Win Count: <span id="winCount"></span></div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-body" id="lossCountDiv">
+          Loss Count: <span id="lossCount"></span>
         </div>
-        <div class="panel panel-default">
-            <div class="panel-body" id="lossCountDiv">Loss Count: <span id="lossCount"></span></div>
-        </div>
-
-
+      </div>
     </div>
 
     <!--link to JavaScript file-->
-    <script src="logic.js">
-
-    </script>
-
-</body>
-
+    <script src="logic.js"></script>
+  </body>
 </html>
