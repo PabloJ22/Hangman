@@ -1,7 +1,6 @@
 body {
   background: url('https://img3.goodfon.com/original/1600x900/a/ca/grim-reaper-scary-creepy.jpg') no-repeat center center/cover;
   height: 100vh;
-
 }
 
 .jumbotron {
@@ -29,6 +28,7 @@ h1 {
 
 .panel {
   margin-right: 10em;
+  font-weight: bold;
 }
 
 .flex-container {
